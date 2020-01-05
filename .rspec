@@ -1,6 +1,5 @@
 --require spec_helper
 --color
 --format documentation
---profile
 --fail-fast
---order random
+--order defined
