@@ -6,7 +6,7 @@
 class Order
   attr_reader :type, :value, :size, :id
   attr_accessor :executed, :remaining
-  
+
   def initialize(order_hash)
     @id = order_hash[:id]
     @type = order_hash[:type]
@@ -23,7 +23,7 @@ class Order
   def sell?
     !buy?
   end
-  
+
   def executed?
     executed
   end

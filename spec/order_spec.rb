@@ -2,11 +2,10 @@
 
 require 'order'
 
-describe "Order" do
-  describe "#buy?" do
+describe 'Describing Order' do
+  describe '#buy?' do
     it 'returns true when order.type is "bid"' do
-      expect(Order.new({type: 'bid'}).buy?).to be(true)
+      expect(Order.new(type: 'bid').buy?).to be(true)
     end
   end
 end
-
