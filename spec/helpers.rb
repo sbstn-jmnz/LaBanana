@@ -13,9 +13,9 @@ module Helpers
     collection = []
     size = 0
     iterator = 0
-    while size < 2 * min_volume && collection.size < 2
+    while size < (2 * min_volume) && collection.size < 2
       collection << Order.new(
-        id: "test_#{iterator}",
+        id: iterator,
         type: 'ask',
         size: Random.rand(min_volume),
         value: order.value
@@ -31,5 +31,9 @@ module Helpers
     end.first.transform_keys!(&:to_sym)
 
     Order.new(order_hash)
+  end
+
+  def sum_quantity(orders)
+    orders.inject(0){ |sum, order| sum + order.quantity }
   end
 end

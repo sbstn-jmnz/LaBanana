@@ -143,7 +143,7 @@ describe 'Describing Market' do
       it 'filters the orders availables to fullfil the original quantity' do
         allow(@market).to receive(:right_price_matching_orders).with(@order)
                                                                .and_return(more_than_one_selling_order(@order))
-        expect(@market.matching_orders(@order).length).to be >= more_than_one_selling_order(@order).length
+        expect(@market.matching_orders(@order).length).to be <= more_than_one_selling_order(@order).length
       end
 
       it 'returns false if there are no matching orders' do
