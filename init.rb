@@ -3,10 +3,10 @@
 
 require_relative('lib/market')
 require 'json'
-require 'byebug'
 
 puts 'Procesando ordenes iniciales'
 market = Market.new.load_initial_orders
+
 10.times do
   print '......'
   sleep 0.1

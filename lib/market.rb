@@ -3,7 +3,6 @@
 require_relative('transaction')
 require_relative('order')
 require 'json'
-require 'byebug'
 
 # Market class
 # Instances of this class hold the list of orders
