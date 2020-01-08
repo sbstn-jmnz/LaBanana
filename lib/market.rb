@@ -71,5 +71,28 @@ class Market
   def quantity
     orders.inject(0){ |sum, order| sum + order.quantity }
   end
+
+  def to_s
+    {
+      transactions: transactions_array,
+      orders: pending_orders_array
+    }
+  end
+
+  def transactions_array
+    array = []
+    transactions.each do |transaction|
+      array << { orders: transaction.orders }
+    end
+    return array
+  end
+  
+  def pending_orders_array
+    array = []
+    pending_orders.each do |order|
+      array << order.instance_variables.each_with_object({}) { |var, hash| hash[var.to_s.delete("@")] = order.instance_variable_get(var) }
+    end
+    return array
+  end
 end
 

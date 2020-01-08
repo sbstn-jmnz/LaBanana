@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 require_relative('lib/market')
+require 'json'
 require 'byebug'
 
 puts 'Procesando ordenes iniciales'
@@ -15,6 +16,8 @@ puts
 puts "En este momento hay una oferta de #{market.quantity} bananas"
 
 puts '------------------------------------------------------------'
-
-puts 'Quieres comprar o vender bananas?'
+File.open("output.json","w") do |f|
+  f.write(market.to_s.to_json)
+end
+puts 'Se ha generado el archivo output.json con el resultado'
 
