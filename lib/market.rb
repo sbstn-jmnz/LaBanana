@@ -2,6 +2,7 @@
 
 require_relative('transaction')
 require_relative('order')
+require 'json'
 require 'byebug'
 
 # Market class
@@ -15,12 +16,13 @@ class Market
     @transactions = []
   end
 
-  def load_initial_orders(input_file)
+  def load_initial_orders(input_file = 'input.json')
     file = File.read(input_file)
     JSON.parse(file)['orders'].each do |order_hash|
       orders << Order.new(order_hash.transform_keys!(&:to_sym))
       try_execute_order(orders.last)
     end
+    return self
   end
 
   def try_execute_order(order)
@@ -64,6 +66,10 @@ class Market
 
   def pending_orders
     orders.reject(&:executed?)
+  end
+  
+  def quantity
+    orders.inject(0){ |sum, order| sum + order.quantity }
   end
 end
 
